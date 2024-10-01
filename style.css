@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    line-height: 1.5;
+}
+
+.body {
+    color: #4d4e53;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    height: 100vh;
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Для Chrome, Safari и Opera */
+}
+
+.main {
+    position: absolute;
+    margin-left: 310px;
+    padding: 20px;
+    margin-bottom: 110px;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-top: 1px solid #4d4e53;
+    padding: 15px 30px;
+    color: #4d4e53;
+    display: block;
+}
+
+.title {
+    font-size: 1.9em;
+    padding: 10px 30px;
+    color: black;
+}
+
+#navbar {
+    position: fixed;
+    min-width: 290px;
+    top: 0px;
+    left: 0px;
+    width: 300px;
+    height: 100%;
+    border-right: solid;
+    border-color: rgba(0, 22, 22, 0.4);
+}
+
+#navbar ul {
+    height: 88%;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+ul::-webkit-scrollbar {
+    display: none; /* Для Chrome, Safari и Opera */
+}
