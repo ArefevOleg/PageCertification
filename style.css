@@ -39,9 +39,12 @@ a {
     display: block;
 }
 
+.navTitle {
+    padding: 10px 30px;
+}
+
 .title {
     font-size: 1.9em;
-    padding: 10px 30px;
     color: black;
 }
 
@@ -75,4 +78,42 @@ a {
 
 ul::-webkit-scrollbar {
     display: none; /* Для Chrome, Safari и Opera */
+}
+
+p {
+    padding: 0 30px 15px 30px;
+}
+
+ul {
+    padding: 0 80px 15px 80px;
+}
+
+.accentPadding {
+    padding: 10px 50px 0 50px;
+}
+
+li {
+    padding-bottom: 15px;
+}
+
+li:last-child {
+    padding-bottom: 0;
+}
+
+.MDN {
+    display: inline;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-top: 0;
+    padding: 0;
+    margin: 0;
+    color: #1d35b3;
+}
+
+code {
+    background-color: rgba(211, 212, 207, 0.55);
+    padding: 10px  20px 10px  20px;
+    display: block;
+    margin-left: 60px;
 }
