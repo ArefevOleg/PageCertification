@@ -22,6 +22,10 @@ body::-webkit-scrollbar {
     display: none; /* Для Chrome, Safari и Opera */
 }
 
+#navbar ul {
+    list-style: none;
+}
+
 .main {
     position: absolute;
     margin-left: 310px;
@@ -54,7 +58,6 @@ a {
 
 .accent {
     color: #f9f903;
-    /*text-shadow: 2px 2px 5px rgb(241, 210, 12);*/
 }
 
 #navbar {
@@ -62,7 +65,7 @@ a {
     min-width: 290px;
     top: 0;
     left: 0;
-    width: 300px;
+    max-width: 300px;
     height: 100%;
     border-right: solid;
     background-color: rgba(174, 174, 177, 0.84);
@@ -78,10 +81,6 @@ a {
 
 ul::-webkit-scrollbar {
     display: none; /* Для Chrome, Safari и Opera */
-}
-
-.item {
-    padding: 0;
 }
 
 p {
@@ -120,4 +119,50 @@ code {
     padding: 10px  20px 10px  20px;
     display: block;
     margin-left: 60px;
+}
+
+@media (max-width: 790px) {
+    #navbar {
+        position: static;
+        margin: 0;
+        max-width: 100%;
+        text-align: center;
+    }
+    a {
+        padding: 3px;
+    }
+
+    .main {
+        position: static;
+        margin: 0;
+    }
+    .item {
+        padding: 0;
+    }
+
+ .container {
+     display: flex;
+     flex-direction: column;
+ }
+}
+
+
+@media (max-width: 520px) {
+    .main {
+        position: static;
+        margin: 0;
+    }
+
+    #navbar {
+        position: static;
+        margin: 0;
+        width: 100%;
+        min-width: 100%;
+        text-align: center;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
 }
