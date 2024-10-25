@@ -14,9 +14,9 @@
 	<nav id="navbar">
 		<header class="navTitle title"><span class="accent">JS</span> Documentation</header>
 		<ul class="listItem">
-			<li class="item"><a href="#Introduction" class="nav-link">Introduction</a></li>
-			<li class="item"><a href="#What_you_should_already_know" class="nav-link">What you should already know</a></li>
-			<li class="item"><a href="#JavaScript_and_Java" class="nav-link">JavaScript and Java</a></li>
+			<li class="item"><a href="#Browser" class="nav-link">Работа в браузере</a></li>
+			<li class="item"><a href="#Variables" class="nav-link">Переменные</a></li>
+			<li class="item"><a href="#Primitives" class="nav-link">Примитивы</a></li>
 			<li class="item"><a href="#Hello_world" class="nav-link">Hello world</a></li>
 			<li class="item"><a href="#Variables" class="nav-link">Variables</a></li>
 			<li class="item"><a href="#Declaring_variables" class="nav-link">Declaring variables</a></li>
@@ -31,65 +31,71 @@
 		</ul>
 	</nav>
 	<main id="main-doc" class="main">
-		<section class="main-section" id="Introduction">
-			<header class="title">Introduction</header>
-			<p>JavaScript is a cross-platform, object-oriented scripting language. It is a small and lightweight language.
-				Inside a host environment (for example, a web browser), JavaScript can be connected to the objects of its
-				environment to provide programmatic control over them.</p>
-			<p>JavaScript contains a standard library of objects, such as Array, Date, and Math, and a core set of language
-				elements such as operators, control structures, and statements. Core JavaScript can be extended for a variety of
-				purposes by supplementing it with additional objects; for example:</p>
+		<section class="main-section" id="Browser">
+			<header class="title">JavaScript работа в браузере</header>
+			<p>JavaScript является интерпретируемым языком программирования: это значит,
+         компьютер распознает его в процессе работы кода.
+          Некоторые языки перед за- пуском кода требуют обработки 
+          (данный процесс называется компиляцией) — но для JavaScript в этом нет необходимости. 
+          Компьютер интерпретирует JavaScript на лету. При этом «движок», понимающий JavaScript, 
+          называется интерпрета- тором.
+        </p>
+		</section>
+		<section class="main-section" id="Variables">
+			<header class="title">Переменные</header>
+			<p>
+				Определение переменной состоит из трех частей: определяющего слова <b class="codeText">let, var или const</b>, 
+        названия и значения.
+        <b class="codeText"> let и var</b> используются для переменных, 
+        которым где-то в программе может быть присвоено новое значение.
+         Различия между let и var не так просты. Они связаны с областью их применения.
+			</p>
 			<ul>
-				<li>Client-side JavaScript extends the core language by supplying objects to control a browser and its Document
-					Object Model (DOM). For example, client-side extensions allow an application to place elements on an HTML form
-					and respond to user events such as mouse clicks, form input, and page navigation.
+				<li><b class="codeText">var</b>относится к глобальным переменным
+          <p>Глобальность var означает, что вы можете использовать переменную, ранее опреде- ленную как var, в любом месте кода.</p>
 				</li>
 				<li>
-					Server-side JavaScript extends the core language by supplying objects relevant to running JavaScript on a
-					server. For example, server-side extensions allow an application to communicate with a database, provide
-					continuity of information from one invocation to another of the application, or perform file manipulations on
-					a server.
+					<b class="codeText">let</b> — локальная переменная
+          <p> Область действия let ограничивается только конкретным блоком кода: вы можете использовать переменные, определенные с помо- щью let, только там, где они и были определены. </p>
+				</li>
+				<li>
+					<b class="codeText">const</b>относится к глобальным переменным
+          <p>
+            Оператор const используется для переменных, которым присваивается значение только один раз,
+             например π, которое априори не меняется. Если вы попытаетесь переназначить переменную const,
+              система выдаст сообщение об ошибке</p>
+              <code>
+                const someConstant = 3;<br>
+                someConstant = 4;</code>
+                <code>Uncaught TypeError: Assignment to constant variable.</code>
 				</li>
 			</ul>
 		</section>
-		<section class="main-section" id="What_you_should_already_know">
-			<header class="title">What you should already know</header>
+		<section class="main-section" id="Primitives">
+			<header class="title">Примитивы</header>
+      <h3>String</h3>
 			<p>
-				This guide assumes you have the following basic background:
+				Строковый тип данных используется для передачи текстовых значений. Это последовательность символов. Есть несколько способов объявить переменную строкового типа:
+        <ul>
+          <li>двойные кавычки;</li>
+          <li>одинарные кавычки;</li>
+          <li>обратные апострофы: специальные шаблонные строки, в которых вы можете напрямую использовать переменные.</li>
+        </ul>
+        <p>Так, например, следующее написание приведет к ошибке, потому что строка будет за- канчиваться апострофом внутри слова let's:</p>
+        <code>let funActivity = 'Let's learn JavaScript';</code>
 			</p>
-			<ul>
-				<li>A general understanding of the Internet and the World Wide Web (WWW).
-				</li>
-				<li>
-					Good working knowledge of HyperText Markup Language (HTML).
-				</li>
-				<li>
-					Some programming experience. If you are new to programming, try one of the tutorials linked on the main page
-					about JavaScript.
-				</li>
-			</ul>
-		</section>
-		<section class="main-section" id="JavaScript_and_Java">
-			<header class="title">JavaScript and Java</header>
+      <p>Слово Let будет определено как строка, но после него набор символов не будет ин- терпретирован. Но если вы объявите строку, заключив ее в двойные кавычки, стро- ка не завершится, когда достигнет апострофа, потому что программа будет искать другую двойную кавычку. Следовательно, эта альтернатива будет работать лучше:</p>
+      <code>let funActivity = "Let's learn JavaScript";</code>
+      <p>Аналогичная история с двойными кавычками. Следующий код не будет работать:</p>
+      <code>let question = "Do you want to learn JavaScript? "Yes!"";</code>
 			<p>
-				JavaScript and Java are similar in some ways but fundamentally different in some others. The JavaScript language
-				resembles Java but does not have Java's static typing and strong type checking. JavaScript follows most Java
-				expression syntax, naming conventions and basic control-flow constructs which was the reason why it was renamed
-				from LiveScript to JavaScript.
+				В строке, использующей обратные апострофы, вы можете ссылаться на перемен- ные — значение переменной будет подставлено в строку. Как во фрагменте кода, представленном ниже:
 			</p>
-			<p>
-				In contrast to Java's compile-time system of classes built by declarations, JavaScript supports a runtime system
-				based on a small number of data types representing numeric, Boolean, and string values. JavaScript has a
-				prototype-based object model instead of the more common class-based object model. The prototype-based model
-				provides dynamic inheritance; that is, what is inherited can vary for individual objects. JavaScript also supports
-				functions without any special declarative requirements. Functions can be properties of objects, executing as
-				loosely typed methods.
-			</p>
-			<p>
-				JavaScript is a very free-form language compared to Java. You do not have to declare all variables, classes, and
-				methods. You do not have to be concerned with whether methods are public, private, or protected, and you do not
-				have to implement interfaces. Variables, parameters, and function return types are not explicitly typed.
-			</p>
+      <code>let language = "JavaScript";<br>
+        let message = `Let's learn ${language}`;<br>
+        console.log(message);
+        </code>
+        <h3>Escape-символы</h3>
 		</section>
 		<section class="main-section" id="Hello_world">
 			<header class="title">Hello world</header>
