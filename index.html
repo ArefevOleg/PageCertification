@@ -16,8 +16,8 @@
 		<ul class="listItem">
 			<li class="item"><a href="#Browser" class="nav-link">Работа в браузере</a></li>
 			<li class="item"><a href="#Variables" class="nav-link">Переменные</a></li>
-			<li class="item"><a href="#Primitives" class="nav-link">Примитивы</a></li>
-			<li class="item"><a href="#Hello_world" class="nav-link">Hello world</a></li>
+			<li class="item"><a href="#Primitives" class="nav-link">Примитивные типы данных</a></li>
+			<li class="item"><a href="#Analysis" class="nav-link">Анализ и модификация типов данных</a></li>
 			<li class="item"><a href="#Variables" class="nav-link">Variables</a></li>
 			<li class="item"><a href="#Declaring_variables" class="nav-link">Declaring variables</a></li>
 			<li class="item"><a href="#Variable_scope" class="nav-link">Variable scope</a></li>
@@ -44,7 +44,7 @@
 		<section class="main-section" id="Variables">
 			<header class="title">Переменные</header>
 			<p>
-				Определение переменной состоит из трех частей: определяющего слова <b class="codeText">let, var или const</b>, 
+				Определение переменной состоит из трех частей: определяющего слова <b class="codeText">let, var</b> или <b class="codeText">const</b>, 
         названия и значения.
         <b class="codeText"> let и var</b> используются для переменных, 
         которым где-то в программе может быть присвоено новое значение.
@@ -96,251 +96,159 @@
         console.log(message);
         </code>
         <h3>Escape-символы</h3>
+        <p>Допустим, мы хотим использовать в нашей строке двойные кавычки, одинарные кавычки и обратные апострофы. С теми ингредиентами, которые у нас есть сейчас, сделать подобное невозможно. Но для этой проблемы есть элегантное решение — специальный символ, с помощью которого можно сказать JavaScript: «Не читай следующий символ как обычно». Речь об escape-символе, обратном слеше.</p>
+        <p>Обратный слеш может использоваться для того, чтобы интерпретатор не видел одинарные или двойные кавычки и не заканчивал строку слишком рано:</p>
+        <code>
+          let str = "Hello, what's your name? Is it \"Mike\"?";<br>
+          console.log(str);<br>
+          let str2 = 'Hello, what\'s your name? Is it "Mike"?';<br>
+          console.log(str2);<br>
+          В консоли выводится: <br>
+ Hello, what's your name? Is it "Mike"?<br>
+ Hello, what's your name? Is it "Mike"?<br>
+          </code>
+          <p>У escape-символа есть много назначений. Вы можете использовать его для созда- ния разрыва строки с помощью \n или для включения символа обратного слеша в текст с помощью \\:</p>
+          <code>let str3 = "New \nline."; // перенос на новую строку<br> 
+            let str4 = "I'm containing a backslash: \\!";<br>
+            console.log(str3);<br>
+            console.log(str4);<br>
+            </code>
+            <h3>Number</h3>
+            <p>Во многих языках существует очень четкая разница между различными типами чисел. Разработчики JavaScript решили использовать один тип данных для них всех: Number (если точнее, это 64-битное число с плавающей точкой). Этот тип может хранить довольно большие числа (как со знаком, так и без), десятичные дроби и многое другое.</p>
+            <p>Существуют различные виды чисел, которые он может представлять. Прежде всего, целые числа, например 4 или 89. Но тип данных Number также может использовать- ся для представления десятичных, экспоненциальных, восьмеричных, шестнадца- теричных и двоичных чисел. Следующий пример кода говорит сам за себя:</p>
+            <code>let intNr = 1;<br>
+              let decNr = 1.5;<br>
+              let expNr = 1.4e15;<br>
+let octNr = 0o10; //в десятичной системе будет 8 <br>
+let hexNr = 0x3E8; //в десятичной системе будет 1000 <br>
+let binNr = 0b101; //в десятичной системе будет 5 <br>
+            </code>
+            <p>Не стоит переживать насчет последних трех позиций, если вы с ними не зна- комы, это просто разные способы представления чисел, с которыми вы можете столкнуться в более продвинутых задачах информационных технологий. Главное здесь то, что все вышеперечисленные числа относятся к типу данных Number. Итак, целые числа — это числа, подобные этим:</p>
+            <code>
+              let intNr2 = 3434;<br>
+let intNr3 = -111;<br>
+Числа с плавающей точкой тоже относятся к типу Number: <br>
+let decNr2 = 45.78;<br>
+И двоичные числа: <br>
+let binNr2 = 0b100; // десятичная версия будет 4 <br>
+            </code>
+            <h3>BigInt</h3>
+            <p>Диапазон значений типа данных Number находится между 253–1 и –(253–1). BigInt вступает в дело, когда вам требуются числа больше (или меньше) этого интервала. Тип данных BigInt можно узнать по окончанию n:</p>
+            <code>let bigNr = 90071992547409920n;</code>
+            <p>Рассмотрим, что происходит, когда мы начинаем вычисления между ранее задан- ным целым числом типа Number, intNr, и значением типа BigInt, bigNr:</p>
+            <code>let result = bigNr + intNr; <br>
+              Результат будет таким: <br>
+              Uncaught TypeError: Cannot mix BigInt and other types, use explicit conversions
+            </code>
+            <p>Ошибка типов данных — TypeError! Совершенно ясно: что-то пошло не так. Для выполнения операций нельзя смешивать тип данных BigInt с типом данных Number. Это то, что следует запомнить на будущее, когда вы будете работать с BigInt, — вы можете использовать BigInt только с другими BigInt.</p>
+            <h3>Boolean</h3>
+            <p>Логический тип данных Boolean может принимать два значения: true (истина) и false (ложь). И ничего больше. Этот тип данных часто используется в коде, особенно в логических выражениях:</p>
+            <code>
+              let bool1 = false; <br>
+              let bool2 = true;
+            </code>
+            <h3>Symbol</h3>
+            <p>Символьный тип Symbol совершенно новый и представлен в ES6 (мы упоминали стандарт ECMAScript 6 в главе 1 «Начало работы с JavaScript»). Он может уста- навливаться в случаях, когда важно подчеркнуть, что переменные не равны, даже если их значение и тип одинаковы (в этом случае они обе примут тип символа). Сравните следующие объявления строк с объявлениями символов (и те и другие имеют одинаковое значение):</p>
+            <code>
+              let str1 = "JavaScript is fun!";<br>
+let str2 = "JavaScript is fun!";<br>
+console.log("These two strings are the same:", str1 === str2);<br>
+let sym1 = Symbol("JavaScript is fun!");<br>
+let sym2 = Symbol("JavaScript is fun!");<br>
+console.log("These two Symbols are the same:", sym1 === sym2);<br>
+Результат будет следующим:<br>
+ These two strings are the same: true<br>
+ These two Symbols are the same: false<br>
+            </code>
+            <p>В первой части кода JavaScript приходит к выводу, что строки одинаковые, 
+              у них один тип и значение. Однако во второй части кода каждый символ определяется как уникальный. Поэтому,
+               хотя содержимое символов одинаковое, они не совпадают и при сравнении выводится значение false.
+                <span class="codeText">Эти символьные типы данных могут быть очень удобны в качестве свойств объектов</span>, которые мы рассмотрим в <span class="codeText">главе 3</span>.</p>
+        <h3>undefined</h3>
+        <code>
+          let unassigned; <br>
+console.log(unassigned); <br>
+Результат будет таким: Undefined
+        </code>
+        <p>Мы также можем целенаправленно назначать undefined — важно знать, что такое возможно. Но еще важнее знать, что <span class="codeText">присвоение типа undefined вручную — плохая практика:</span></p>
+        <p>Да, так можно, но лучше так не делайте. По целому ряду причин — например,<span class="codeText"> в слу- чаях, когда требуется проверить, совпадают ли две переменные</span>. Если одна пере- менная не определена (undefined), а вашей собственной переменной вы вручную присвоили значение undefined,
+           переменные будут считаться равными. Но вы же хотите знать, действительно ли значения равны, а не только то, что они не определе- ны. Так, кличка чьего-то домашнего животного и фамилия хозяина могут считаться равными, тогда как на самом деле они являются просто пустыми значениями.</p>
+<h3>null</h3>
+<p>null — это специальное значение, указывающее на то, что переменная пуста или имеет неизвестное значение. Данное значение чувствительно к регистру — для написания null используются только строчные буквы:
+</p>
+<code>let empty = null;</code>
+<p>
+  Чтобы решить проблему, с которой мы столкнулись при объявлении переменной как неопределенной, следует установить для нее значение null — и проблем не воз- никнет. Это одна из причин, по которой лучше присваивать переменной значение null, если вы хотите указать, что она изначально пуста и неизвестна:</p>
+  <code>
+    let terribleThingToDo = undefined; <br>
+let lastName;<br>
+console.log("Same undefined:", lastName === terribleThingToDo);<br>
+let betterOption = null;<br>
+console.log("Same null:", lastName === betterOption);<br>
+Результат будет следующим:<br>
+ Same undefined: true<br>
+ Same null: false<br>
+  </code>
+  <p>Как видим, автоматически не определенная переменная, lastName, и намеренно не определенная переменная, terribleThingToDo, считаются равными — это про- блематично. С другой стороны, lastName и betterOption, которой было присвоено значение null, не равны.</p>
 		</section>
-		<section class="main-section" id="Hello_world">
-			<header class="title">Hello world</header>
-			<p>
-				To get started with writing JavaScript, open the Scratchpad and write your first "Hello world" JavaScript code:
-			</p>
-			<code>
-				function greetMe(yourName) { alert("Hello " + yourName); }
-				greetMe("World");
-			</code>
-			<p>
-				Select the code in the pad and hit Ctrl+R to watch it unfold in your browser!
-			</p>
-		</section>
-		<section class="main-section" id="Variables">
-			<header class="title">Variables</header>
-			<p>
-				You use variables as symbolic names for values in your application. The names of variables, called identifiers,
-				conform to certain rules.
-			</p>
-			<p>
-				A JavaScript identifier must start with a letter, underscore (_), or dollar sign ($); subsequent characters can
-				also be digits (0-9). Because JavaScript is case sensitive, letters include the characters "A" through "Z"
-				(uppercase) and the characters "a" through "z" (lowercase).
-			</p>
-			<p>
-				You can use ISO 8859-1 or Unicode letters such as å and ü in identifiers. You can also use the Unicode escape
-				sequences as characters in identifiers. Some examples of legal names are Number_hits, temp99, and _name.
-			</p>
-		</section>
-		<section class="main-section" id="Declaring_variables">
-			<header class="title">Declaring variables</header>
-			<p>
-				You can declare a variable in three ways:
-			</p>
-			<code>
-				var x = 42.
-			</code>
-			<p>
-				This syntax can be used to declare both local and global variables.
-			</p>
-			<p>
-				By simply assigning it a value. For example,
-			</p>
-			<code>
-				x = 42.
-			</code>
-			<p>
-				This always declares a global variable. It generates a strict JavaScript warning. You shouldn't use this variant.
-			</p>
-			<p>
-				With the keyword let. For example,
-			</p>
-			<code>
-				let y = 13.
-			</code>
-			<p>
-				This syntax can be used to declare a block scope local variable. See Variable scope below.
-			</p>
-		</section>
-		<section class="main-section" id="Variable_scope">
-			<header class="title">Variable scope</header>
-			<p>
-				When you declare a variable outside of any function, it is called a global variable, because it is available to
-				any other code in the current document. When you declare a variable within a function, it is called a local
-				variable, because it is available only within that function.
-			</p>
-			<p>
-				JavaScript before ECMAScript 2015 does not have block statement scope; rather, a variable declared within a block
-				is local to the function (or global scope) that the block resides within. For example the following code will log
-				5, because the scope of x is the function (or global context) within which x is declared, not the block, which in
-				this case is an if statement.
-			</p>
-			<code>
-				if (true) { var x = 5; } console.log(x); // 5
-			</code>
-			<p>
-				This behavior changes, when using the let declaration introduced in ECMAScript 2015.
-			</p>
-			<code>
-				if (true) { let y = 5; } console.log(y); // ReferenceError: y is
-				not defined
-			</code>
-		</section>
-		<section class="main-section" id="Global_variables">
-			<header class="title">Global variables</header>
-			<p>
-				Global variables are in fact properties of the global object. In web pages the global object is window, so you can
-				set and access global variables using the window.variable syntax.
-			</p>
-			<p>
-				Consequently, you can access global variables declared in one window or frame from another window or frame by
-				specifying the window or frame name. For example, if a variable called phoneNumber is declared in a document, you
-				can refer to this variable from an iframe as parent.phoneNumber.
-			</p>
-		</section>
-		<section class="main-section" id="Constants">
-			<header class="title">Constants</header>
-			<p>
-				You can create a read-only, named constant with the const keyword. The syntax of a constant identifier is the same
-				as for a variable identifier: it must start with a letter, underscore or dollar sign and can contain alphabetic,
-				numeric, or underscore characters.
-			</p>
-			<code>
-				const PI = 3.14;
-			</code>
-			<p>
-				A constant cannot change value through assignment or be re-declared while the script is running. It has to be
-				initialized to a value.
-			</p>
-			<p>
-				The scope rules for constants are the same as those for let block scope variables. If the const keyword is
-				omitted, the identifier is assumed to represent a variable.
-			</p>
-			<p>
-				You cannot declare a constant with the same name as a function or variable in the same scope. For example:
-			</p>
-			<code>
-				// THIS WILL CAUSE AN ERROR function f() {}; const f = 5; // THIS
-				WILL CAUSE AN ERROR ALSO function f() { const g = 5; var g;
-				//statements }
-			</code>
-			<p>
-				However, object attributes are not protected, so the following statement is executed without problems.
-			</p>
-			<code>
-				const MY_OBJECT = {"key": "value"}; MY_OBJECT.key =
-				"otherValue";
-			</code>
-		</section>
-		<section class="main-section" id="Data_types">
-			<header class="title">Data types</header>
-			<p>
-				The latest ECMAScript standard defines seven data types:
-			</p>
-			<ul>
-				<li>Six data types that are primitives:
-					<ul class="accentPadding">
-						<li>Boolean. true and false.</li>
-						<li>null. A special keyword denoting a null value. Because JavaScript is case-sensitive, null is not the same as
-							Null, NULL, or any other variant.
-						</li>
-						<li>undefined. A top-level property whose value is undefined.
-						</li>
-						<li>Number. 42 or 3.14159.
-						</li>
-						<li>String. "Howdy"
-						</li>
-						<li>Symbol (new in ECMAScript 2015). A data type whose instances are unique and immutable.
-						</li>
-					</ul></li>
-				<li>and Object
-				</li>
-			</ul>
-			<p>Although these data types are a relatively small amount, they enable you to perform useful functions with your
-				applications. Objects and functions are the other fundamental elements in the language. You can think of objects
-				as named containers for values, and functions as procedures that your application can perform.
-			</p>
-		</section>
-		<section class="main-section" id="if...else_statement">
-			<header class="title">if...else statement</header>
-			<p>Use the if statement to execute a statement if a logical condition is true. Use the optional else clause to
-				execute a statement if the condition is false. An if statement looks as follows:</p>
-			<code>if (condition) { statement_1; } else { statement_2; }</code>
-			<p>condition can be any expression that evaluates to true or false. See Boolean for an explanation of what
-				evaluates to true and false. If condition evaluates to true, statement_1 is executed; otherwise, statement_2 is
-				executed. statement_1 and statement_2 can be any statement, including further nested if statements.</p>
-			<p>You may also compound the statements using else if to have multiple conditions tested in sequence, as
-				follows:</p>
-			<code>if (condition_1) { statement_1; } else if (condition_2) {
-				statement_2; } else if (condition_n) { statement_n; } else {
-				statement_last; }</code>
-			<p>In the case of multiple conditions only the first logical condition which evaluates to true will be executed.
-				To execute multiple statements, group them within a block statement ({ ... }) . In general, it's good practice
-				to always use block statements, especially when nesting if statements:</p>
-			<code>if (condition) { statement_1_runs_if_condition_is_true;
-				statement_2_runs_if_condition_is_true; } else {
-				statement_3_runs_if_condition_is_false;
-				statement_4_runs_if_condition_is_false; }</code>
-			<p>It is advisable to not use simple assignments in a conditional expression, because the assignment can be
-				confused with equality when glancing over the code. For example, do not use the following code:
-			</p>
-			<code>if (x = y) { /* statements here */ }</code>
-			<p>If you need to use an assignment in a conditional expression, a common practice is to put additional
-				parentheses around the assignment. For example:</p>
-			<code>if ((x = y)) { /* statements here */ }</code>
-		</section>
-		<section class="main-section" id="while_statement">
-			<header class="title">while statement</header>
-			<p>A while statement executes its statements as long as a specified condition evaluates to true. A while statement
-				looks as follows:</p>
-			<code>while (condition) statement</code>
-			<p>If the condition becomes false, statement within the loop stops executing and control passes to the statement
-				following the loop.</p>
-			<p>The condition test occurs before statement in the loop is executed. If the condition returns true, statement is
-				executed and the condition is tested again. If the condition returns false, execution stops and control is passed
-				to the statement following while.</p>
-			<p>To execute multiple statements, use a block statement ({ ... }) to group those statements.</p>
-			<p>Example:</p>
-			<p>The following while loop iterates as long as n is less than three:</p>
-			<code>var n = 0; var x = 0; while (n < 3) { n++; x += n; }</code>
-			<p>With each iteration, the loop increments n and adds that value to x. Therefore, x and n take on the
-				following values:</p>
-			<ul>
-				<li>
-					After the first pass: n = 1 and x = 1
-				</li>
-				<li>
-					After the second pass: n = 2 and x = 3
-				</li>
-				<li>
-					After the third pass: n = 3 and x = 6
-				</li>
-			</ul>
-			<p>After completing the third pass, the condition n < 3 is no longer true, so the loop terminates.</p>
-		</section>
-		<section class="main-section" id="Function_declarations">
-			<header class="title">Function declarations</header>
-			<p>
-				A function definition (also called a function declaration, or function statement) consists of the function
-				keyword, followed by:
-			</p>
-			<ul>
-				<li>The name of the function.</li>
-				<li>A list of arguments to the function, enclosed in parentheses and separated by commas.</li>
-				<li>The JavaScript statements that define the function, enclosed in curly brackets, { }.</li>
-			</ul>
-			<p>For example, the following code defines a simple function named square:</p>
-			<code>function square(number) { return number * number; }</code>
-			<p>The function square takes one argument, called number. The function consists of one statement that says to return
-				the argument of the function (that is, number) multiplied by itself. The return statement specifies the value
-				returned by the function.</p>
-			<code>return number * number;</code>
-			<p>Primitive parameters (such as a number) are passed to functions by value; the value is passed to the function,
-				but if the function changes the value of the parameter, this change is not reflected globally or in the calling
-				function.</p>
-			<p></p>
-		</section>
-		<section class="main-section" id="Reference">
-			<header class="title">Reference</header>
-			<ul>
-				<li>All the documentation in this page is taken from <a class="MDN"
-																																href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide">MDN</a></li>
-			</ul>
-		</section>
+		<section class="main-section" id="Analysis">
+      <header class="title">Анализ и модификация типов данных</header>
+      <p>Мы рассмотрели примитивные типы данных. Существует несколько встроенных методов JavaScript, которые помогут справиться с распространенными проблемами, возникающими при работе с примитивами. Встроенные методы — это части логи- ческой схемы, которые можно использовать сразу и не мучиться над их созданием вручную.</p>
+<h3>Определение типа переменной</h3>
+<p>Иногда трудно определить тип данных, с которым вы имеете дело, особенно в слу- чае null и undefined. Рассмотрим оператор typeof. Он возвращает тип переменной. С его помощью вы можете получить эту информацию. Введите typeof, затем либо пробел, за которым следует рассматриваемая переменная, либо эту переменную в скобках:</p>
+<code>testVariable = 1;<br>
+  variableTypeTest1 = typeof testVariable;<br>
+  variableTypeTest2 = typeof(testVariable);<br>
+  console.log(variableTypeTest1);<br>
+  console.log(variableTypeTest2);<br>
+</code>
+<p>Как вы могли предположить, оба метода выведут number. Скобки не требуются, потому что технически typeof является оператором, а не методом, в отличие от console.log. Хотя на практике вы наверняка заметите, что использование скобок облегчает чтение вашего кода. Рассмотрим следующий пример:</p>
+<code>
+  let str = "Hello"; <br>
+let nr = 7;<br>
+let bigNr = 12345678901234n;<br>
+let bool = true;<br>
+let sym = Symbol("unique");<br>
+let undef = undefined;<br>
+let unknown = null;<br>
+console.log("str", typeof str); str string<br>
+console.log("nr", typeof nr); nr number<br>
+console.log("bigNr", typeof bigNr); bigNr bigint<br>
+console.log("bool", typeof bool); bool boolean<br>
+console.log("sym", typeof sym); sym symbol<br>
+console.log("undef", typeof undef); undef undefined<br>
+console.log("unknown", typeof unknown); unknown object<br>
+</code>
+<p>Последний тип — это и есть тип null. 
+  В выводе можно наблюдать, что typeof null возвращает значение object,
+   в то время как <span class="codeText">на самом деле null является примити- вом, а не объектом</span>. 
+   Это ошибка, которая существует в JavaScript с незапамятных времен и которую пока нет возможности исправить из-за проблем с обратной со- вместимостью. Не беспокойтесь о ней: на выполнение программ она не повлияет, но имейте эту ошибку в виду, поскольку в ближайшее время она никуда не денется и может повлиять на адекватную работу приложений.</p>
+   <h3>Преобразование типов данных</h3>
+   <p>В JavaScript можно изменить тип данных переменных. Иногда JavaScript делает это автоматически.</p>
+   <code>
+    let nr1 = 2;<br>
+let nr2 = "2";<br>
+console.log(nr1 * nr2);<br>
+   </code>
+   <p>Мы попытались умножить переменную типа Number на переменную типа String. 
+    JavaScript не выдает ошибку (как сделали бы многие другие языки), 
+    а пытается сна- чала преобразовать значение переменной String в Number. Если это можно сделать, команда выполняется без каких-либо проблем, как если бы были объявлены две пере- менные типа Number. В таком случае метод console.log() выдает результат 4 на экране.</p>
+    <p>Но это достаточно опасный ход!</p>
+    <code>let nr1 = 2;<br>
+      let nr2 = "2";<br>
+      console.log(nr1 + nr2); // 22 typeof = string<br>
+    </code>
+    <p>Результатом будет 22. Знак плюс можно использовать для объединения строк.
+       Поэтому вместо преобразования string в number код <span class="codeText">преобразует number в string.</span>
+        И соединяет две строки — 2 и 2, выдавая в результате строку 22.
+         К счастью, нам не нужно полагаться на поведение JavaScript при преобразовании типов данных.
+          Существуют встроенные функции, которые мы можем для этого использовать.</p>
+<h3>Три метода преобразования: String(), Number() и Boolean()</h3>
+<p>
+  Рассмотрим три метода преобразования: <span class="codeText">String()</span>, Number() и Boolean().
+   Первый преобразует переменную в тип String. Он, в общем-то, <span class="codeText">принимает любое значение, включая undefined и null, и заключает его в кавычки.</span></p>
+
+    </section>
 	</main>
 </div>
 <script src="script.js"></script>
