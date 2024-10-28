@@ -60,6 +60,11 @@ a {
     color: #f9f903;
 }
 
+.red {
+ background-color: rgb(178, 125, 125);
+ padding: 0 5px;
+}
+
 #navbar {
     position: fixed;
     min-width: 290px;
@@ -157,6 +162,19 @@ code {
  }
 }
 
+.submenu {
+  display: none;
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.submenuItem {
+  background-color: rgba(174, 174, 177, 0.84);
+}
+
+.submenuItem:hover {
+  background-color: #d8d9de;
+}
 
 @media (max-width: 520px) {
     .main {
