@@ -15,9 +15,15 @@ document.addEventListener('DOMContentLoaded', function() {
               setTimeout(() => {
                   targetHeading.style.textShadow = '';
               }, 1500);
+              
 
               // Плавный скроллинг
               targetSection.scrollIntoView({
+                  behavior: 'smooth'
+              });
+          } else {
+              // Плавный скроллинг к целевому разделу
+              document.getElementById(targetId).scrollIntoView({
                   behavior: 'smooth'
               });
           }
