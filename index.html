@@ -37,13 +37,23 @@
           <li class="submenuItem"><a href="#or" class="nav-link">«ИЛИ» (||)</a></li>
           <li class="submenuItem"><a href="#not" class="nav-link">«НЕ» (!)</a></li>
       </ul></li>
-			<li class="item"><a href="#Variable_scope" class="nav-link">Variable scope</a></li>
+			<li class="item"><a href="#Array" class="nav-link">Массивы и их свойства</a>
+        <ul class="submenu">
+          <li class="submenuItem"><a href="#String" class="nav-link">Создание массивов</a></li>
+          <li class="submenuItem"><a href="#Escape" class="nav-link">Доступ к элементам</a></li>
+          <li class="submenuItem"><a href="#Number" class="nav-link">Перезапись элементов</a></li>
+          <li class="submenuItem"><a href="#BigInt" class="nav-link">Встроенное свойство длины</a></li>
+          <li class="submenuItem"><a href="#Boolean" class="nav-link">Методы</a></li>
+          <li class="submenuItem"><a href="#Symbol" class="nav-link">Symbol</a></li>
+          <li class="submenuItem"><a href="#undefined" class="nav-link">undefined</a></li>
+          <li class="submenuItem"><a href="#null" class="nav-link">null</a></li>
+      </ul></li>
 			<li class="item"><a href="#Global_variables" class="nav-link">Global variables</a></li>
 			<li class="item"><a href="#Constants" class="nav-link">Constants</a></li>
 			<li class="item"><a href="#Data_types" class="nav-link">Data types</a></li>
 			<li class="item"><a href="#if...else_statement" class="nav-link">if...else statement</a></li>
 			<li class="item"><a href="#while_statement" class="nav-link">while statement</a></li>
-			<li class="item"><a href="#Function_declarations" class="nav-link">Function declarations</a></li>
+			<li class="item"><a href="#Projects" class="nav-link">Проекты</a></li>
 			<li class="item"><a href="#Mathematics" class="nav-link">Математика</a></li>
       <li class="item"><a href="#bottom" class="nav-link">Низ</a></li>
 		</ul>
@@ -637,7 +647,171 @@ let y = 2;<br>
 console.log(!(x < y));<br>
             </code>
             <p>Значение x меньше значения y, поэтому выражение считается true. Но оно от- рицается восклицательным знаком — поэтому на экран будет выведен резуль- тат false.</p>
+            <h3>Вопросы для самопроверки</h3>
+          <ol>
+            <li>К какому типу данных относится следующая переменная?
+              <code>const c = "5";</code>
+            </li>
+            <li>Какой тип данных представляет переменная ниже?
+              <code>const c = 91;</code>
+            </li>
+            <li>Какая из строк обычно считается лучшей, строка 1 или строка 2?
+              <code>let empty1 = undefined; //строка 1 <br>
+                let empty2 = null; //строка 2</code>
+            </li>
+            <li>Какой результат после выполнения следующего кода будет выведен на экран?
+              <code>
+                let a = "Hello";<br>
+   a = "world";<br>
+   console.log(a);<br>
+              </code>
+            </li>
+            <li>Какой результат выводится в консоли?
+              <code>
+                let a = "world";<br>
+   let b = `Hello ${a}!`;<br>
+   console.log(b);<br>
+              </code>
+            </li>
+            <li>Каково значение a?
+              <code>
+                let a = "Hello";<br>
+   a = prompt("world");<br>
+   console.log(a);<br>
+              </code>
+            </li>
+            <li>
+              Какое значение b будет выведено на экран?
+              <code>
+                let a = 5;<br>
+   let b = 70;<br>
+   let c = "5";<br>
+   b++;<br>
+   console.log(b);<br>
+              </code>
+            </li>
+            <li>Каково значение result?
+              <code>
+                let result = 3 + 4 * 2 / 8;
+              </code>
+            </li>
+            <li>
+              Каковы значения total и total2?
+              <code>
+                let firstNum = 5;<br>
+                let secondNum = 10;<br>
+                firstNum++;<br>
+                secondNum--;<br>
+let total = ++firstNum + secondNum;<br>
+console.log(total);<br>
+let total2 = 500 + 100 / 5 + total--;<br>
+console.log(total2);<br>
+              </code>
+            </li>
+            <li>Какой результат вы увидите на экране?
+              <code>
+                const a = 5;<br>
+const b = 10;<br>
+console.log(a > 0 && b > 0);<br>
+console.log(a == 5 && b == 4);<br>
+console.log(true || false);<br>
+console.log(a == 3 || b == 10);<br>
+console.log(a == 3 || b == 7);<br>
+              </code>
+            </li>
+          </ol>
+    </section>
+    <section class="main-section" id="Array">
+			<header class="title">Массивы и их свойства</header>
+      <p>
+        Массивы — это перечни значений. Значения могут быть всех типов, один массив может содержать значения разных типов. Зачастую очень удобно хранить множе- ство значений в одной переменной, например список студентов или продуктов, результаты теста. Как только вы начнете писать скрипты, вам придется очень часто создавать массивы. Скажем, когда вы захотите отслеживать все вводимые данные или когда понадобится список опций для представления пользователю.
+      </p>
+<h3>Создание массивов</h3>
+<p>Как считаете, какая из следующих записей лучшая?</p>
+<code>
+  arr1 = new Array("purple", "green", "yellow");<br>
+arr2 = ["black", "orange", "pink"];<br>
+</code>
+<p>
+  Если вы выбрали второй вариант, с использованием квадратных скобок, — вы пра- вы. Это самый читаемый способ записи для создания массива. С другой стороны, первый вариант может дать неожиданные результаты. Взгляните на обе строки кода. Как думаете, каким будет итог?
+</p>
+<code>
+  arr3 = new Array(10);<br>
+arr4 = [10];<br>
+</code>
+<p>
+  Вероятно, вы чувствуете, что здесь что-то не так. Массив с одним значением 10 получится не во всех вариантах. Нужный результат даст только вторая запись, arr4. Первый вариант даст массив с десятью неопределенными значениями. Если логировать значения следующим образом:
+</p>
+<code>
+  console.log(arr3); // [ <10 empty items> ] <br>
+console.log(arr4); // [ 10 ]
+</code>
+<p>
+  Спасибо, JavaScript! Это было крайне полезно. Делаем вывод: если только вашей целью не является получение массива с неопределенными значениями, исполь- зуйте квадратные скобки!
+</p>
+<p>
+  Как вы помните, у нас могут быть смешанные массивы, ведь массивы позволяют хранить переменные любого типа. Значения массива не будут преобразованы в один тип данных или что-то в этом роде. JavaScript просто хранит все переменные с их собственным типом данных и значением в массиве:
+</p>
+<code>
+  let arr = ["hi there", 5, true];<br>
+console.log(typeof arr[0]); // string <br>
+console.log(typeof arr[1]); // number <br>
+console.log(typeof arr[2]); // boolean
+</code>
+<p>
+  Еще одна интересная штука о массивах, которую мы здесь рассмотрим, — это результат определения массива с помощью const. Вы можете изменить значения констант массива, но не можете изменить сам массив. Фрагмент кода для демон- страции:
+</p>
+<code>
+  const arr = ["hi there"];<br>
+arr[0] = "new value";<br>
+console.log(arr[0]); // new value<br>
+arr = ["nope, now you are overwriting the array"]; // TypeError: Assignment to constant variable.
+</code>
+<h3>Доступ к элементам</h3>
+<p>
+  Прекрасный массив, который мы только что создали, стал бы намного мощнее, если бы мы могли получить доступ к его элементам. Мы можем сделать это, обра- тившись к индексу массива. Мы его сами не указывали, но нам это и не было нуж- но. JavaScript присваивает индекс каждому значению в массиве данных. Первое значение имеет индекс 0, второе — 1, третье — 2 и т. д. Если необходимо вызвать определенное значение по его положению в массиве, можно указать имя массива, добавить квадратные скобки в конце и вписать в них индекс, к которому мы хотим получить доступ. Например:
+</p>
+<code>
+  cars = ["Toyota", "Renault", "Volkswagen"];<br>
+console.log(cars[0]); // Toyota<br>
+</code>
+<p>
+  Этот оператор зафиксирует значение Toyota и выведет его на экран, потому что мы вызвали позицию 0 в массиве. В ней содержится первое значение списка.
+</p>
+<code>
+  console.log(cars[1]); // Renault
+</code>
+<p>
+  Вызов позиции с индексом 1 вернет нам значение второго элемента массива —
+Renault. Это и будет выведено на экран.
+</p>
+<code>console.log(cars[2]); // Volkswagen</code>
+<p>
+  Третьему элементу присвоен индекс 2, поэтому будет выведено его следующее значение — Volkswagen. Как думаете, что произойдет, если мы используем отрица- тельное значение индекса или значение индекса, которое превышает количество существующих значений?
+</p>
+<code>
+  console.log(cars[3]);<br>
+console.log(cars[-1]);<br>
+</code>
+      </section>
 
+
+    <section class="main-section" id="Projects">
+      <header class="title">Проекты</header>
+      <h3 class="practical">Проекты главы 2</h3>
+      <h3>Конвертер миль в километры</h3>
+      <p>Создайте переменную, содержащую значение в милях, преобразуйте ее в километры и запишите значение в километрах в следующем формате:</p>
+      <code>
+        Расстояние 130 миль. равно 209,2142 км
+      </code>
+      <h3>Вычислитель индекса массы тела (ИМТ)</h3>
+      <p>Установите значения для роста в дюймах и веса в фунтах, затем преобразуйте значения в сантиметры и килограммы:</p>
+      <ul>
+        <li>1 дюйм равен 2,54 см;</li>
+        <li>2,2046 фунта равны 1 кг.</li>
+      </ul>
+      <p>Выведите результаты. Затем рассчитайте и запишите ИМТ: он равен весу (в кило- граммах), деленному на квадрат роста (в метрах). Выведите результаты на экран.</p>
+      
     </section>
     <div class="void" id="bottom"></div>
     <!-- <section class="main-section" id="Mathematics">
